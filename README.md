@@ -3,6 +3,41 @@
 
 ### Project Specifications
 
+**Structural Model** 
+<br>
+![](./assets/folders.png)
+<br>
+
+**Logical Model**
+<br>
+![](./assets/logical.png)
+<br>
+
+**Flowchart**
+<br>
+![](./assets/flowchart.png)
+<br>
+
+**User Components**
+<br>
+![](./assets/user-plan.png)
+<br>
+
+**Entity Relationship Diagram**
+<br>
+![](./assets/erd.png)
+<br>
+
+**Light Mode Wireframing**
+<br>
+![](./assets/figma-light.png)
+<br>
+
+**Dark Mode Wireframing**
+<br>
+![](./assets/figma-dark.png)
+<br>
+
 ## Tech Stack 
 - [ ] Java
 - [ ] Apache Maven
