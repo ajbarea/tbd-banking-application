@@ -1,0 +1,12 @@
+.account {
+  border-color: var(--tbd-main) !important;
+  cursor: pointer;
+}
+
+.account:hover {
+  border-color: var(--tbd-active) !important;
+}
+
+.active-account {
+  border-color: var(--tbd-active) !important;
+}

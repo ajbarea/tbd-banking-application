@@ -1,0 +1,12 @@
+.transaction {
+  border-color: var(--tbd-main) !important;
+  cursor: pointer;
+}
+
+.transaction:hover{
+  border-color: var(--tbd-active) !important;
+}
+
+.active-transaction {
+  border-color: var(--tbd-active) !important;
+}

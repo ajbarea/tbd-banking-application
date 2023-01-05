@@ -1,0 +1,30 @@
+title Make Transfer functionality
+
+autoactivation 
+
+actor End User
+fontawesome5brands f420 Client
+
+End User -> Client :  "Transfer Funds"
+
+Client -> TransactionController : POST request
+
+TransactionController -> Transaction : map Transaction data
+
+Transaction --> TransactionController : return mapped data
+
+TransactionController -> TransactionService : makeTx()
+
+TransactionService -> TransactionEntity : convert model to entity
+
+TransactionEntity -->TransactionService : return entity
+
+TransactionService -> TransactionRepo : persist entity
+
+TransactionRepo --> TransactionService : return persisted entity
+
+TransactionService --> TransactionController : return true
+
+TransactionController --> Client : return DTO
+
+Client --> End User : "Transfer Complete"

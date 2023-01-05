@@ -1,0 +1,41 @@
+title Registration Functionality
+
+autoactivation
+
+
+actor End User
+fontawesome5brands f420 Client
+
+End User -> Client : input registration credentials
+
+Client -> UserController : make fetch request
+
+UserController -> User : map user data
+User --> UserController : return mapped user data
+
+UserController -> UserService : make service call
+
+UserService -> UserRepo : findByUsername
+
+UserRepo -> UserEntity : map User data
+
+
+alt user exists
+
+UserEntity -->UserRepo : return UserEntity instance
+
+UserRepo --> UserService : return Optional<UserEntity>
+UserService --> UserController : throw custom exception
+UserController ->UserController : catch custom exception
+UserController --> Client : send DTO
+Client --> End User : "Username already in use"
+
+else user doesn't exist
+
+UserEntity -->UserRepo : return null
+UserRepo --> UserService : return Optional<UserEntity>
+UserService --> UserController : return true
+UserController --> Client : return DTO
+Client --> End User : display "Registration successful! Please log in!"
+
+end

@@ -1,0 +1,46 @@
+<router-outlet></router-outlet>
+<div class="container my-5 text-center">
+  <div class="row justify-content-center">
+    <h2>
+      {{ getCurrentUsername() ? getCurrentUsername() : "User" }}'s - Profile
+    </h2>
+  </div>
+  <form [formGroup]="profileForm" class="container text-center my-3">
+    <div class="row justify-content-center">
+      <mat-form-field class="col-4 align-self-center" appearance="outline">
+        <mat-label>First name</mat-label>
+        <input
+          matInput
+          placeholder="Enter first name"
+          formControlName="firstName"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row justify-content-center">
+      <mat-form-field class="col-4 align-self-center" appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input
+          matInput
+          placeholder="Enter last name"
+          formControlName="lastName"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row justify-content-center">
+      <mat-form-field class="col-4 align-self-center" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="Enter email name"
+          formControlName="email"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row justify-content-center">
+      <app-button class="col-2 mx-1" (btnClick)="onSubmit()">Update</app-button>
+      <app-button class="col-2 mx-4" (btnClick)="openPasswordMenu()"
+        >Change Password</app-button
+      >
+    </div>
+  </form>
+</div>

@@ -1,0 +1,88 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$TBDBank-primary: mat.define-palette(mat.$blue-grey-palette);
+$TBDBank-accent: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$TBDBank-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$TBDBank-default-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $TBDBank-primary,
+      accent: $TBDBank-accent,
+      warn: $TBDBank-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($TBDBank-default-theme);
+
+
+$TBDBank-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $TBDBank-accent,
+      accent: $TBDBank-primary,
+      warn: $TBDBank-warn,
+    ),
+  )
+);
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, "Helvetica Neue", sans-serif;
+}
+
+//General Color-pallete
+:root {
+  --tbd-link: #72a4c2;
+  --tbd-active: #f26925;
+  --tbd-main: #474c55;
+  --tbd-background: #fff;
+  --tbd-buttonbg: #72a4c2;
+  --tbd-buttontxt: #fff;
+}
+[data-theme="dark"] {
+  --tbd-link: #fff;
+  --tbd-active: #fcb414;
+  --tbd-main: #fff;
+  --tbd-background: #2a2c2f;
+  --tbd-buttonbg: #1e1e1e;
+  --tbd-buttontxt: #fff;
+  @include mat.all-component-colors($TBDBank-dark-theme);
+}
+
+body {
+  background-color: var(--tbd-background);
+  color: var(--tbd-main);
+}
+
+a {
+  color: var(--tbd-link) !important;
+}
+
+.active {
+  color: var(--tbd-active) !important;
+}

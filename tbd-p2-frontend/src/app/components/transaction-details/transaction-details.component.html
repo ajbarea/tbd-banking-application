@@ -1,0 +1,30 @@
+<app-modal *ngIf="!transaction" [title]="'Loading..'">
+  <div
+    class="container d-flex justify-content-center py-3 my-3 border-top"
+  >
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</app-modal>
+<app-modal *ngIf="transaction" [title]="transaction.description">
+    <mat-divider></mat-divider>
+    <p class="mx-3 my-2 fs-4 border-bottom d-flex justify-content-between">
+      <span>Amount: </span>
+      <span class="text-end">{{ transaction.amount | currency }}</span>
+    </p>
+    <p class="mx-3 my-2 fs-4 border-bottom d-flex justify-content-between">
+      <span>Transaction date: </span>
+      <span class="text-end">{{ transaction.date | date }}</span>
+    </p>
+    <p class="mx-3 my-2 fs-4 border-bottom d-flex justify-content-between">
+      <span>Type: </span>
+      <span class="text-end">{{ transaction.type.type }}</span>
+    </p>
+    <p class="mx-3 my-2 fs-4 border-bottom d-flex justify-content-between">
+      <span>Status: </span>
+      <span class="text-end">{{ transaction.status.status }}</span>
+    </p>
+    <p class="mx-3 my-3 fs-4 border-bottom d-flex justify-content-between">
+      <span>Merchant name: </span>
+      <span class="text-end">{{ transaction.merchantName }}</span>
+    </p>
+</app-modal>

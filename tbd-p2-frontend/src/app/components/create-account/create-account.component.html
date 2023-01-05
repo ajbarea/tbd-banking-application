@@ -1,0 +1,46 @@
+<app-modal [title]="'Create an Account'">
+  <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Account Name</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            type="text"
+            placeholder="My Account"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row my-2">
+        <mat-form-field appearance="outline">
+          <mat-label>Balance</mat-label>
+          <input
+            matInput
+            formControlName="balance"
+            type="number"
+            placeholder="Initial Deposit (Minimum: $100.00)"
+            class="text-end"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row my-2">
+        <mat-form-field appearance="outline">
+          <mat-label>Account Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option>Select an option</mat-option>
+            <mat-option *ngFor="let type of types" [value]="type">{{
+              type.type
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row justify-content-center text-center my-2">
+        <app-button type="submit" [disabled]="accountForm.invalid"
+          >Make Account</app-button
+        >
+      </div>
+    </div>
+  </form>
+</app-modal>

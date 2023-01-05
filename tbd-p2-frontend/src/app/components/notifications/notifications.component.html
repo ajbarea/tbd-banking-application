@@ -1,0 +1,43 @@
+<div class="text-end py-2">
+  <button
+    mat-icon-button
+    aria-label="Notifications bell"
+    matBadgeColor="warn"
+    [matBadge]="count$ | async"
+    [matBadgeHidden]="(count$ | async ) == 0"
+    matBadgeSize="medium"
+    class="notification-button"
+    [matMenuTriggerFor]="notees"
+  >
+    <mat-icon
+      class="notification-bell mb-2"
+      fontIcon="notifications"
+    ></mat-icon>
+  </button>
+  <mat-menu #notees="matMenu">
+    <a mat-menu-item *ngIf="notifications.length <= 0">There's nothing here</a>
+    <div mat-menu-item *ngFor="let notification of notifications">
+      <div class="container border my-1">
+        <div class="row m-1 px-2">
+          <div class="col">
+            <a
+              class="nav-link request-link active"
+              (click)="handleClick(notification)"
+              [routerLink]="['/requests', notification.request!.id]"
+              [ngClass]="{'read': notification.status!.status === 'READ'}"
+              >Money
+              <strong>{{
+                notification!.request!.amount! > 0 ? "SENT" : "REQUESTED"
+              }}</strong>
+              from
+              <strong>{{ notification!.request!.sender!.user!.username }}</strong></a
+            >
+          </div>
+          <div class="col-2 align-self-center px-1">
+            <button mat-icon-button (click)="handleDelete(notification)"><mat-icon>delete</mat-icon></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-menu>
+</div>

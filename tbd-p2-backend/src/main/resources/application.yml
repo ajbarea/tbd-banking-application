@@ -1,0 +1,15 @@
+#use @TestPropertySource(location) for test.yml
+spring:
+  datasource:
+    url: ${DB_URL}tbdbank
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+app:
+  jwt:
+    secret: 12odUZMFCoVSpQbqdMXnK65ci5i9TVgFtnmTGQ7O+MCKUSRMYyVfZmVzWr2zFCiBIhtodeSaR60Lhdip+w/uwQ====

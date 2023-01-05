@@ -1,0 +1,33 @@
+<app-modal [title]="'Change Password'">
+  <div class="container text-center">
+    <form [formGroup]="pswdForm">
+      <div class="row justify-content-center">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              type="password"
+              placeholder="enter your password"
+              formControlName="password"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Re-Password</mat-label>
+            <input
+              matInput
+              type="password"
+              placeholder="Re-enter your password"
+              formControlName="repassword"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <app-button (btnClick)="onSubmit()">Change Password</app-button>
+    </form>
+  </div>
+</app-modal>

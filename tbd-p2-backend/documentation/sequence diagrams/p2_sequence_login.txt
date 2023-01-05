@@ -1,0 +1,40 @@
+title Login Functionality
+
+autoactivation
+
+
+actor End User
+fontawesome5brands f420 Client
+
+End User -> Client : input login credentials
+
+Client -> UserController : make fetch request
+
+UserController -> LoginTemplate : map login credentials
+LoginTemplate --> UserController : return mapped login credentials
+
+UserController -> UserService : make service call
+
+UserService -> UserRepo : findByUsernameAndPassword
+
+UserRepo -> UserEntity : map User data
+
+alt user exists
+
+UserEntity -->UserRepo : return UserEntity instance
+
+UserRepo --> UserService : return Optional<UserEntity>
+UserService --> UserController : return Token
+UserController --> Client : send DTO<Token>
+Client --> End User : display dashboard
+
+else user doesn't exists
+
+UserEntity -->UserRepo : return null
+UserRepo --> UserService : return Optional<UserEntity>
+UserService --> UserController : throw custom exception
+UserController->UserController : catch custom exception
+UserController --> Client : return DTO
+Client --> End User : display "login failed"
+
+end

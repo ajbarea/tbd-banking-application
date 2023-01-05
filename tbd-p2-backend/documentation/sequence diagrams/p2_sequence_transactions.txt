@@ -1,0 +1,38 @@
+title Account Details Retrieval Functionality
+
+autoactivation
+
+
+actor End User
+fontawesome5brands f420 Client
+
+End User -> Client : select account to view
+
+Client -> TransactionController : make fetch request
+
+TransactionController -> TransactionService : make service call
+
+TransactionService -> TransactionRepo : findAllByAccountID
+
+loop for each row found
+
+TransactionRepo -> TransactionEntity : map Transaction data
+
+TransactionEntity -->TransactionRepo : return mapped data
+
+end
+
+
+TransactionRepo --> TransactionService : return List<TransactionEntity>
+
+loop for each entity in List<Entity>
+
+TransactionService -> Transaction : map entity to model
+
+Transaction --> TransactionService : return model
+
+end
+
+TransactionService --> TransactionController : return List<Transaction>
+TransactionController --> Client : return DTO<List<Transaction>>
+Client --> End User : display list of transactions

@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <mat-card class="m-5 shadow-lg">
+        <mat-card-header class="justify-content-center pb-3 mb-3">
+          <mat-card-title><h1>Request</h1></mat-card-title>
+        </mat-card-header>
+        <div
+          class="container p-3 mx-2"
+          *ngIf="request && request.status!.id == 1"
+        >
+          <div class="row">
+            <div class="col text-center">
+              <h3>
+                User {{ request.sender!.user!.username | uppercase }} has
+                {{ request.amount! > 0 ? "SENT" : "REQUESTED" }} an amount of
+                {{ abs(request.amount!) | currency }}
+              </h3>
+            </div>
+          </div>
+          <div class="row flex-column">
+            <div class="col text-center my-1 fs-2 px-2">
+              <button
+                mat-flat-button
+                color="primary"
+                class="py-4"
+                (click)="onAccept()"
+                [disabled]="isAccept"
+              >
+                ACCEPT
+              </button>
+            </div>
+            <div class="col text-center my-2 fs-2 px-2">
+              <button
+                mat-flat-button
+                color="warn"
+                class="py-4"
+                (click)="onDeny()"
+                [disabled]="isAccept"
+              >
+                DENY
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="isAccept">
+          <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+            <div class="container">
+              <div class="row justify-content-center">
+                <mat-form-field appearance="outline" class="w-75">
+                  <mat-label>Account</mat-label>
+                  <mat-select formControlName="account">
+                    <mat-option>Select an Account</mat-option>
+                    <mat-option
+                      *ngFor="let account of accounts"
+                      [value]="account.id"
+                      >{{ account.name }} - {{ account.id | slice : -4 }}:
+                      {{ account.balance | currency }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+                <div class="row justify-content-center text-center my-2">
+                  <div class="col-2">
+                    <app-button type="submit" [disabled]="requestForm.invalid"
+                      >Submit</app-button
+                    >
+                  </div>
+                  <div class="col-2">
+                    <button
+                      mat-flat-button
+                      color="warn"
+                      (click)="isAccept = false"
+                      class="h-100 w-100"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="container text-center my-5" *ngIf="request && request.status!.id == 2">
+          <h2>This Request has already been processed!</h2>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
